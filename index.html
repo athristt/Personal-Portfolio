@@ -88,7 +88,8 @@
 
   /* ===== Hero ===== */
   .hero{background:var(--jade-800);min-height:100vh;display:flex;align-items:center;padding:calc(130px + env(safe-area-inset-top)) 8vw 80px;}
-  .hero-grid{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;width:100%;max-width:1180px;margin:0 auto;position:relative;z-index:1;}
+  .hero-grid{display:flex;align-items:center;gap:56px;width:100%;max-width:1180px;position:relative;z-index:1;}
+  .hero-text-block{min-width:0;max-width:600px;}
   .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(53,172,128,0.18);border:1px solid rgba(150,220,192,0.28);color:var(--jade-200);font-size:14px;font-weight:600;padding:8px 18px;border-radius:100px;margin-bottom:36px;}
   .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:pulseDot 2s ease-in-out infinite;}
   .hero h1{font-size:clamp(42px,7.5vw,80px);font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:18px;}
@@ -105,7 +106,7 @@
   .cta-outline{border:1.5px solid rgba(255,255,255,0.32);color:#fff;font-weight:700;font-size:14px;padding:14px 26px;border-radius:100px;background:transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;}
   .cta-outline:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.7);transform:translateY(-2px);}
 
-  .hero-portrait{position:relative;animation:imgFloat 6s ease-in-out infinite;}
+  .hero-portrait{position:relative;animation:imgFloat 6s ease-in-out infinite;flex-shrink:0;}
   .portrait-frame{width:300px;height:370px;border-radius:24px;background:linear-gradient(160deg, rgba(53,172,128,0.28) 0%, rgba(7,26,14,0.7) 100%);border:1.5px solid rgba(150,220,192,0.25);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
   .portrait-frame .monogram{font-family:var(--font-display);font-size:88px;font-weight:800;color:rgba(150,220,192,0.35);}
   .portrait-ring{position:absolute;border-radius:32px;border:1px dashed rgba(150,220,192,0.22);pointer-events:none;}
@@ -116,7 +117,7 @@
   .badge-float.b2 p{color:var(--jade-200);}
 
   @media (max-width:900px){
-    .hero-grid{grid-template-columns:1fr;text-align:center;}
+    .hero-grid{flex-direction:column;text-align:center;max-width:100%;}
     .hero-portrait{order:-1;margin:0 auto 8px;animation:none;}
     .portrait-frame{width:190px;height:230px;}
     .hero-badge{margin-left:auto;margin-right:auto;}
@@ -300,9 +301,10 @@
   .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s cubic-bezier(.16,.8,.24,1);}
   .gallery-item:hover img{transform:scale(1.08);}
   .gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(12,73,51,0.75) 0%, rgba(12,73,51,0.15) 45%, transparent 65%);opacity:0;transition:opacity 0.3s ease;}
-  .gallery-item:hover::after{opacity:1;}
+  .gallery-item:hover .gallery-caption, .gallery-item.caption-visible .gallery-caption{opacity:1;transform:translateY(0);}
+  .gallery-item:hover::after, .gallery-item.caption-visible::after{opacity:1;}
+  .gallery-item{cursor:pointer;}
   .gallery-caption{position:absolute;left:0;right:0;bottom:0;padding:14px 16px 12px;color:#fff;font-size:13px;font-weight:600;line-height:1.4;opacity:0;transform:translateY(10px);transition:opacity 0.3s ease, transform 0.3s ease;z-index:2;text-align:center;}
-  .gallery-item:hover .gallery-caption{opacity:1;transform:translateY(0);}
   .gallery-hidden{display:none;}
   .gallery-grid.expanded .gallery-hidden{display:block;}
   .show-more-btn{background:var(--stone-100);border:1.5px solid var(--stone-200);color:var(--stone-800);font-weight:700;font-size:14px;padding:12px 26px;border-radius:100px;cursor:pointer;transition:background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;}
@@ -313,14 +315,14 @@
 
   /* ===== Moments carousel ===== */
   .carousel-outer{position:relative;z-index:1;}
-  .carousel-viewport{overflow:hidden;border-radius:20px;padding:0 46px;}
+  .carousel-viewport{overflow:hidden;border-radius:20px;}
   .carousel-track{display:flex;transition:transform 0.55s cubic-bezier(.65,0,.35,1);}
-  .moment-slide{min-width:100%;}
+  .moment-slide{min-width:100%;padding:0 46px;}
   .carousel-nav-btn{position:absolute;top:40%;width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid var(--stone-200);box-shadow:0 8px 22px rgba(42,39,35,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;transition:transform 0.25s cubic-bezier(.34,1.56,.64,1), background 0.25s ease;color:var(--stone-800);}
   .carousel-nav-btn:hover{transform:scale(1.1);background:var(--jade-400);color:#fff;}
   .carousel-prev{left:0;}
   .carousel-next{right:0;}
-  @media (max-width:700px){.carousel-viewport{padding:0 30px;} .carousel-nav-btn{width:32px;height:32px;} .carousel-prev{left:-2px;} .carousel-next{right:-2px;}}
+  @media (max-width:700px){.moment-slide{padding:0 30px;} .carousel-nav-btn{width:32px;height:32px;} .carousel-prev{left:-2px;} .carousel-next{right:-2px;}}
   .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:24px;}
   .carousel-dot{width:8px;height:8px;border-radius:50%;background:var(--stone-200);cursor:pointer;transition:background 0.25s ease, transform 0.25s ease;}
   .carousel-dot.active{background:var(--jade-400);transform:scale(1.3);}
@@ -394,7 +396,7 @@
     <div class="blob" style="width:200px;height:200px;top:55%;right:22%;border-radius:50%;background:rgba(232,168,30,0.08);animation:floatC 9s ease-in-out infinite 2.5s;"></div>
   </div>
   <div class="hero-grid">
-    <div>
+    <div class="hero-text-block">
       <div class="hero-badge"><span class="dot"></span>Based in Kathmandu, Nepal</div>
       <h1>Pranav<br><span class="accent">Regmi.</span></h1>
       <div class="role-line">
@@ -1024,7 +1026,7 @@
   }
   function startAutoAdvance(){
     clearInterval(momentTimer);
-    momentTimer = setInterval(() => { if (!carouselPaused) goToMoment(momentIndex + 1); }, 5000);
+    momentTimer = setInterval(() => { if (!carouselPaused) goToMoment(momentIndex + 1); }, 3500);
   }
   document.getElementById('carouselNext').addEventListener('click', () => { goToMoment(momentIndex + 1); startAutoAdvance(); });
   document.getElementById('carouselPrev').addEventListener('click', () => { goToMoment(momentIndex - 1); startAutoAdvance(); });
@@ -1039,6 +1041,15 @@
   // ================= FLIP CARDS =================
   document.querySelectorAll('.flip-card').forEach(card => {
     card.addEventListener('click', () => card.classList.toggle('flipped'));
+  });
+
+  // ================= GALLERY CAPTIONS (tap to reveal on touch devices) =================
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      const wasVisible = item.classList.contains('caption-visible');
+      document.querySelectorAll('.gallery-item.caption-visible').forEach(i => i.classList.remove('caption-visible'));
+      if (!wasVisible) item.classList.add('caption-visible');
+    });
   });
 
   // ================= SHOW MORE (SkillShikshya gallery) =================
