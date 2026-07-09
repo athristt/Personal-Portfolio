@@ -88,7 +88,7 @@
 
   /* ===== Hero ===== */
   .hero{background:var(--jade-800);min-height:100vh;display:flex;align-items:center;padding:calc(130px + env(safe-area-inset-top)) 8vw 80px;}
-  .hero-grid{display:flex;align-items:center;gap:56px;width:100%;max-width:1180px;position:relative;z-index:1;}
+  .hero-grid{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:32px;width:100%;position:relative;z-index:1;}
   .hero-text-block{min-width:0;max-width:600px;}
   .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(53,172,128,0.18);border:1px solid rgba(150,220,192,0.28);color:var(--jade-200);font-size:14px;font-weight:600;padding:8px 18px;border-radius:100px;margin-bottom:36px;}
   .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:pulseDot 2s ease-in-out infinite;}
@@ -106,7 +106,7 @@
   .cta-outline{border:1.5px solid rgba(255,255,255,0.32);color:#fff;font-weight:700;font-size:14px;padding:14px 26px;border-radius:100px;background:transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;}
   .cta-outline:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.7);transform:translateY(-2px);}
 
-  .hero-portrait{position:relative;animation:imgFloat 6s ease-in-out infinite;flex-shrink:0;}
+  .hero-portrait{position:relative;animation:imgFloat 6s ease-in-out infinite;flex-shrink:0;justify-self:center;}
   .portrait-frame{width:300px;height:370px;border-radius:24px;background:linear-gradient(160deg, rgba(53,172,128,0.28) 0%, rgba(7,26,14,0.7) 100%);border:1.5px solid rgba(150,220,192,0.25);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
   .portrait-frame .monogram{font-family:var(--font-display);font-size:88px;font-weight:800;color:rgba(150,220,192,0.35);}
   .portrait-ring{position:absolute;border-radius:32px;border:1px dashed rgba(150,220,192,0.22);pointer-events:none;}
@@ -117,7 +117,7 @@
   .badge-float.b2 p{color:var(--jade-200);}
 
   @media (max-width:900px){
-    .hero-grid{flex-direction:column;text-align:center;max-width:100%;}
+    .hero-grid{display:flex;flex-direction:column;text-align:center;max-width:100%;}
     .hero-portrait{order:-1;margin:0 auto 8px;animation:none;}
     .portrait-frame{width:190px;height:230px;}
     .hero-badge{margin-left:auto;margin-right:auto;}
